@@ -1,0 +1,53 @@
+- hosts: server
+  tasks:
+    - name: Ensure epel repository is set
+      yum:
+        name: epel-release
+        state: latest
+      become: true
+      
+    # System update
+    - name: Ensure all pkgs are up-to-date
+      yum:
+        name: '*'
+        state: latest
+      become: true
+      tags: update
+
+    # Install packages
+    - name: Ensure system RPMs are installed and up-to-date
+      yum: 
+        pkg: "{{ item }}"
+        state: latest
+      become: true
+      with_items:
+        - git
+        - postfix
+        - chrony
+        - mlocate
+        - screen
+        - vim-enhanced
+        - yum-utils
+        - bzip2
+        - unzip
+        - bind-utils
+        - man-pages
+        - net-tools
+        - etckeeper
+      
+    # Manage etckeeper
+    - name: Ensure etc is versionned
+      shell: "etckeeper init"
+      args:
+        executable: /bin/bash
+        creates: /etc/.git
+        chdir: /etc        
+      become: true
+      
+    - name: Ensure first commit is done for etc
+      shell: "etckeeper commit 'First commit'"
+      args:
+        executable: /bin/bash
+        creates: /etc/.git/refs/heads/master
+        chdir: /etc        
+      become: true
