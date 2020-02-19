@@ -1,4 +1,4 @@
-- hosts: server
+hosts:192.168.0.165 
   tasks:
     - name: Ensure epel repository is set
       yum:
