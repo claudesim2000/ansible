@@ -1,5 +1,6 @@
-hosts:192.168.0.165 
+hosts: all 
   tasks:
+
     - name: Ensure epel repository is set
       yum:
         name: epel-release
