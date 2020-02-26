@@ -1,4 +1,5 @@
 - hosts: serveur01
+- name: Package facts
   tasks:
     package_facts:
     Manage: auto
