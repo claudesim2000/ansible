@@ -4,12 +4,12 @@
   - name: Installation test
   - package_facts:
     manager: yum
-  debug:
-    yum:
-      pkg: "{{ item }}"
-      state: latest
-    become: true
-  when: "{{ item }} not in ansible_facts.packages"
+    debug:
+      yum:
+        pkg: "{{ item }}"
+        state: latest
+      become: true
+    when: "{{ item }} not in ansible_facts.packages"
   with_items:
       - telnet
       - mailx
