@@ -1,6 +1,6 @@
 - hosts: serveur01
   tasks:
-      package_facts:
+    - package_facts:
       manager: yum
 
 # System update
@@ -17,7 +17,7 @@
     yum:
       pkg: "{{ item }}"
       state: latest
-      become: true
+    become: true
   when: "{{ item }} not in ansible_facts.packages"
   with_items:
       - telnet
