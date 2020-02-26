@@ -1,14 +1,8 @@
 - hosts: serveur01
   tasks:
-  - name: Ensure epel repository is set
-    yum:
-      name: epel-release
-      state: latest
-    become: true
-    
-  - name: auto
+  - name: test
     package_facts:
-    manager: auto
+    manager: yum
 
   # System update
   - name: Ensure all pkgs are up-to-date
