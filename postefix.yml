@@ -13,7 +13,7 @@
     tags: update
 
   # Install packages
-  - name: "Installation test"
+  - name: Installation test
     debug:
       yum:
         pkg: "{{ item }}"
