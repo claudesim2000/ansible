@@ -1,0 +1,11 @@
+- hosts: serveur01
+  tasks:
+      # Install packages
+      - name: Ensure system RPMs are installed and up-to-date
+        yum:
+          pkg: "{{ item }}"
+          state: latest
+        become: true
+        with_items:
+                  - telnet
+                  - mailx
