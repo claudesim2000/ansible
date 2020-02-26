@@ -2,7 +2,7 @@
   tasks:
   - name: test pour verification
     package_facts:
-    Manage: auto
+    manager: auto
 
   # System update
   - name: Ensure all pkgs are up-to-date
