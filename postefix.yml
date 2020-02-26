@@ -1,11 +1,9 @@
 - hosts: serveur01
   tasks:
-    - name: module de chk
-    - package_facts:
-      manager: yum
-
 # Install packages
-- name: Installation test
+  - name: Installation test
+  - package_facts:
+    manager: yum
   debug:
     yum:
       pkg: "{{ item }}"
