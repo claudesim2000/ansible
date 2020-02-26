@@ -1,6 +1,6 @@
 - hosts: serveur01
   tasks:
-  - name: Package facts
+  - name: test pour verification
     package_facts:
     Manage: auto
 
