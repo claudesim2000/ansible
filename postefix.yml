@@ -1,11 +1,25 @@
 - hosts: serveur01
   tasks:
-      # Install packages
-      - name: Ensure system RPMs are installed and up-to-date
-        yum:
-          pkg: "{{ item }}"
-          state: latest
-        become: true
-        with_items:
-                  - telnet
-                  - mailx
+    package_facts:
+    Manage: auto
+
+# System update
+- name: Ensure all pkgs are up-to-date
+  yum:
+    name: '*'
+    state: latest
+  become: true
+  tags: update
+
+# Install packages
+- name: "Installation test"
+  debug:
+    yum:
+      pkg: "{{ item }}"
+      state: latest
+      become: true
+    when: "{{ item }} not in ansible_facts.packages"
+    with_items:
+      - telnet
+      - mailx
+      - postfixadmin
