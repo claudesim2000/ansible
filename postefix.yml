@@ -18,8 +18,8 @@
       pkg: "{{ item }}"
       state: latest
       become: true
-    when: "{{ item }} not in ansible_facts.packages"
-    with_items:
+  when: "{{ item }} not in ansible_facts.packages"
+  with_items:
       - telnet
       - mailx
       - postfixadmin
