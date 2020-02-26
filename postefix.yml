@@ -1,25 +1,25 @@
 - hosts: serveur01
   tasks:
-    package_facts:
+      package_facts:
       manager: yum
 
-    # System update
-    - name: Ensure all pkgs are up-to-date
-      yum:
-        name: '*'
-        state: latest
-      become: true
-      tags: update
+# System update
+- name: Ensure all pkgs are up-to-date
+  yum:
+    name: '*'
+    state: latest
+  become: true
+  tags: update
 
-    # Install packages
-    - name: Installation test
-      debug:
-        yum:
-          pkg: "{{ item }}"
-          state: latest
-          become: true
-        when: "{{ item }} not in ansible_facts.packages"
-        with_items:
-          - telnet
-          - mailx
-          - postfixadmin
+# Install packages
+- name: Installation test
+  debug:
+    yum:
+      pkg: "{{ item }}"
+      state: latest
+      become: true
+    when: "{{ item }} not in ansible_facts.packages"
+    with_items:
+      - telnet
+      - mailx
+      - postfixadmin
