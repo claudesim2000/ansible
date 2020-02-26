@@ -1,6 +1,12 @@
 - hosts: serveur01
   tasks:
-  - name: test pour verification
+  - name: Ensure epel repository is set
+    yum:
+      name: epel-release
+      state: latest
+    become: true
+    
+  - name: auto
     package_facts:
     manager: auto
 
