@@ -1,9 +1,21 @@
 - hosts: serveur01
   tasks:
-    # Install packages
-    - name: test installation validation
-      package_facts:
-          manager: yum
+        - name: Ensure epel repository is set
+          yum:
+            name: epel-release
+            state: latest
+          become: true
+
+        # System update
+        - name: Ensure all pkgs are up-to-date
+          yum:
+            name: '*'
+            state: latest
+          become: true
+          tags: update
+
+          # Install packages
+        - name: test installation validation
           yum:
             pkg: "{{ item }}"
             state: latest
@@ -12,4 +24,3 @@
               - telnet
               - mailx
               - postfixadmin
-          when: "{{ item }} not in ansible_facts.packages"
