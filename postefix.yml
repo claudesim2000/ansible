@@ -1,26 +1,26 @@
 - hosts: serveur01
   tasks:
-        - name: Ensure epel repository is set
-          yum:
-            name: epel-release
-            state: latest
-          become: true
+      - name: Ensure epel repository is set
+        yum:
+          name: epel-release
+          state: latest
+        become: true
 
-        # System update
-        - name: Ensure all pkgs are up-to-date
-          yum:
-            name: '*'
-            state: latest
-          become: true
-          tags: update
+      # System update
+      - name: Ensure all pkgs are up-to-date
+        yum:
+          name: '*'
+          state: latest
+        become: true
+        tags: update
 
-          # Install packages
-        - name: test installation validation
-          yum:
-            pkg: "{{ item }}"
-            state: latest
-          become: true
-          with_items:
-              - telnet
-              - mailx
-              - postfixadmin
+        # Install packages
+      - name: test installation validation
+        yum:
+          pkg: "{{ item }}"
+          state: latest
+        become: true
+        with_items:
+            - telnet
+            - mailx
+            - postfixadmin
