@@ -4,13 +4,13 @@
     - name: test installation validation
       package_facts:
           manager: yum
-          debug:
-            yum:
-              pkg: "{{ item }}"
-              state: latest
-            become: true
-          when: "{{ item }} not in ansible_facts.packages"
           with_items:
               - telnet
               - mailx
               - postfixadmin
+          debug:
+            yum:
+              pkg: "{{ item }}"
+              state: latest
+          when: "{{ item }} not in ansible_facts.packages"
+          become: true
