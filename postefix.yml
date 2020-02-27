@@ -8,9 +8,9 @@
             yum:
               pkg: "{{ item }}"
               state: latest
+              become: true
+              with_items:
+                  - telnet
+                  - mailx
+                  - postfixadmin
           when: "{{ item }} not in ansible_facts.packages"
-          become: true
-          with_items:
-              - telnet
-              - mailx
-              - postfixadmin
