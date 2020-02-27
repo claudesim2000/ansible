@@ -1,10 +1,10 @@
 ---
 - hosts: serveur01
-  tasks:
-# Install packages
-  - name: Installation test
-  - package_facts:
+    # Install packages
+- package_facts:
     manager: yum
+- name: installation des pachkage
+  tasks:
     debug:
       yum:
         pkg: "{{ item }}"
