@@ -1,3 +1,4 @@
+---
 - hosts: serveur01
   tasks:
 # Install packages
@@ -10,7 +11,8 @@
         state: latest
       become: true
     when: "{{ item }} not in ansible_facts.packages"
-  with_items:
-      - telnet
-      - mailx
-      - postfixadmin
+    with_items:
+        - telnet
+        - mailx
+        - postfixadmin
+...
